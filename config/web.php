@@ -75,6 +75,14 @@ return [
         ],
 
         /**
+         * Компонент авторизации в системе.
+         */
+        'user' => [
+            'identityClass' => \application\services\IdentityService::class,
+            'enableAutoLogin' => true
+        ],
+
+        /**
          * Настройка расположения View приложения.
          */
         'view' => [

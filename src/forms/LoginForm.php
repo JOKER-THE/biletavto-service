@@ -33,6 +33,18 @@ class LoginForm extends Model
     }
 
     /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'rememberMe' => 'Запомнить'
+        ];
+    }
+
+    /**
      * Валидация пароля.
      * Этот метод служит встроенной проверкой пароля.
      *
@@ -45,7 +57,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect login or password.');
+                $this->addError($attribute, 'Некорректный логин или пароль.');
             }
         }
     }

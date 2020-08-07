@@ -13,7 +13,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +37,18 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Войти', 'url' => ['/auth/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/auth/logout'], 'post')
+                . Html::submitButton(
+                    'Выйти (' . Yii::$app->user->identity->surname . ' ' . Yii::$app->user->identity->name . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
         ]
     ]);
     NavBar::end();

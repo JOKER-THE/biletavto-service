@@ -25,6 +25,16 @@ return [
     'basePath' => dirname(__DIR__),
 
     /**
+     * Язык приложения.
+     */
+    'language' => 'ru-RU',
+
+    /**
+     * Часовой пояс приложения.
+     */
+    'timeZone' => 'Asia/Irkutsk',
+
+    /**
      * Пространство имен, в котором находятся классы контроллера.
      */
     'controllerNamespace' => 'application\controllers',
@@ -79,7 +89,8 @@ return [
          */
         'user' => [
             'identityClass' => \application\services\IdentityService::class,
-            'enableAutoLogin' => true
+            'enableAutoLogin' => true,
+            'loginUrl' => ['/auth/login']
         ],
 
         /**

@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <div class="box box-info">
+    <div>
         <?php echo DetailView::widget([
             'model' => $model,
             'attributes' => [

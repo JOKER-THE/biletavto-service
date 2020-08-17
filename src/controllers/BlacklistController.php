@@ -7,8 +7,8 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
-use yii\data\ActiveDataProvider;
 use application\entities\Blacklist;
+use application\forms\search\BlacklistForm;
 
 /**
  * Контроллер, отвечающий за работу
@@ -47,12 +47,12 @@ class BlacklistController extends Controller
      */
     public function actionIndex()
     {
-        $model = new ActiveDataProvider([
-            'query' => Blacklist::find()
-        ]);
+        $model = new BlacklistForm();
+        $dataProvider = $model->search(Yii::$app->request->get());
 
         return $this->render('index', [
-            'model' => $model
+            'model' => $model,
+            'dataProvider' => $dataProvider
         ]);
     }
 

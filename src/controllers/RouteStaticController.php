@@ -7,8 +7,8 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
-use yii\data\ActiveDataProvider;
 use application\entities\RouteStatic;
+use application\forms\search\RouteStaticForm;
 
 /**
  * Контроллер, отвечающий за работу
@@ -48,12 +48,12 @@ class RouteStaticController extends Controller
      */
     public function actionIndex()
     {
-        $model = new ActiveDataProvider([
-            'query' => RouteStatic::find()
-        ]);
+        $model = new RouteStaticForm();
+        $dataProvider = $model->search(Yii::$app->request->get());
 
         return $this->render('index', [
-            'model' => $model
+            'model' => $model,
+            'dataProvider' => $dataProvider
         ]);
     }
 

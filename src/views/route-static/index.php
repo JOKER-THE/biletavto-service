@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-10">
                 <?php echo GridView::widget([
-                    'dataProvider' => $model,
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $model,
                     'tableOptions' => [
                         'class' => 'table table-striped',
                     ],
